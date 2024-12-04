@@ -1,0 +1,206 @@
+﻿<Window x:Class="Content_Management_System.TableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Content_Management_System"
+        mc:Ignorable="d"
+        Title="TableWindow" Height="400" Width="750" AllowsTransparency="True" Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown" SizeToContent="WidthAndHeight" FontFamily="Courier" WindowStyle="None">
+    <Canvas
+        Width="750"
+        Height="400">
+        <Path
+            Name="UIPath"
+            Stroke="AliceBlue"
+            StrokeThickness="2">
+            <Path.Fill>
+                <ImageBrush ImageSource="/Images/black.jpg"/>
+            </Path.Fill>
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="50,200">
+                        <LineSegment Point="0,100"/>
+                        <LineSegment Point="100,0"/>
+                        <LineSegment Point="650,0"/>
+                        <LineSegment Point="750,100"/>
+                        <LineSegment Point="600,400"/>
+                        <LineSegment Point="150,400"/>
+                        <LineSegment Point="30,160"/>
+                        <LineSegment Point="50,200"/>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Grid
+            Height="400"
+            Width="550" 
+            Canvas.Left="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label 
+                x:Name="LabelTitle"
+                HorizontalAlignment="Center"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Grid.Column="0"
+                Grid.ColumnSpan="7"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Foreground="White"
+                Content="Models"
+                FontSize="25"
+                FontWeight="Bold"/>
+
+            <DataGrid 
+                Grid.Column="0"
+                Grid.ColumnSpan="7"
+                Grid.Row="2"
+                Grid.RowSpan="6"
+                x:Name="DataGridModels"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserResizeColumns="False"
+                CanUserReorderColumns="False"            
+                ItemsSource="{Binding Specifications}">
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn
+                        x:Name="CheckBoxSelect"
+                        Header="Select">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox MouseEnter="CheckBox_MouseEnter"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridHyperlinkColumn
+                        Header="Model"
+                        Binding="{Binding Model}"
+                        IsReadOnly="True">
+                        <DataGridHyperlinkColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <EventSetter Event="Hyperlink.Click"
+                                             Handler="Hyperlink_Click"/>
+                            </Style>
+                        </DataGridHyperlinkColumn.ElementStyle>
+                    </DataGridHyperlinkColumn>
+                    
+                    <DataGridTemplateColumn Header="Picture">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Picture}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn
+                        Header="Date of post"
+                        Binding="{Binding DateAdd}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn> 
+                        
+                    <DataGridTextColumn
+                        Header="Fuel"
+                        Binding="{Binding Fuel}"/>
+
+                    <DataGridTextColumn
+                        Header="Number"
+                        Binding="{Binding NumberInRow}"/>
+                </DataGrid.Columns>
+
+                
+
+
+
+
+            </DataGrid>
+
+
+            <Button
+                x:Name="ButtonAddModel"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Grid.Row="9"
+                Width="100"
+                FontSize="13"
+                Content="Add new model"
+                BorderThickness="1"
+                BorderBrush="AntiqueWhite"
+                Click="ButtonAddModel_Click"
+                Cursor="Hand"
+                HorizontalAlignment="Center"
+                Background="AntiqueWhite">
+                
+                
+            </Button>
+
+
+            <Button
+                x:Name="ButtonRemoveModel"
+                Grid.Column="4"
+                Grid.ColumnSpan="2"
+                Grid.Row="9"
+                Width="100"
+                HorizontalAlignment="Center"
+                FontSize="13"
+                Content="Remove model"
+                BorderThickness="1"
+                BorderBrush="AntiqueWhite"
+                Background="AntiqueWhite"
+                Click="ButtonRemove_Click"
+                Cursor="Hand">  
+            </Button>
+
+
+            <Button
+                x:Name="ButtonExitTable"
+                Grid.Column="6"
+                Grid.Row="0"
+                FontSize="13"
+                Content="X"
+                Height="20"
+                Width="20"
+                BorderThickness="1"
+                BorderBrush="LightSteelBlue"
+                Background="AliceBlue"
+                Cursor="Hand"
+                Click="ButtonExitTable_Click">
+            </Button>
+
+
+
+
+
+
+        </Grid>
+
+        
+
+
+
+    </Canvas>
+</Window>
